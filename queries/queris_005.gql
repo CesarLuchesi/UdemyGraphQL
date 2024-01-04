@@ -1,0 +1,14 @@
+# QUERY VARIABLES
+# {
+#   "id": "115"
+# }
+query GET_USERS($id: ID!, $teste: Boolean) {
+  user(id: $id, teste: $teste) {
+    id
+    firstName
+    lastName
+    userName
+    indexRef
+    createdAt
+  }
+}
