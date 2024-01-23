@@ -1,5 +1,6 @@
-const users = async (_, __, { getUsers }) => {
-  const users = await getUsers();
+const users = async (_, { input }, { getUsers }) => {
+  const apiFiltersInput = new URLSearchParams(input);
+  const users = await getUsers('/?' + apiFiltersInput);
   return users.json();
 };
 
@@ -10,8 +11,5 @@ const user = async (_, { id }, { getUsers }) => {
 };
 
 export const userResolvers = {
-  Query: {
-    user,
-    users,
-  },
+  Query: { user, users },
 };
