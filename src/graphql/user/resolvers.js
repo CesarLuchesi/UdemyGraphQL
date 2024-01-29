@@ -10,6 +10,11 @@ const user = async (_, { id }, { getUsers }) => {
   return user;
 };
 
+const posts = async ({ id }, __, { postDataloader }) => {
+  return postDataloader.load(id);
+};
+
 export const userResolvers = {
   Query: { user, users },
+  User: { posts },
 };
