@@ -1,10 +1,10 @@
 const users = async (_, { input }, { dataSources }) => {
-  const users = dataSources.userAPi.getUsers(input);
+  const users = await dataSources.userAPi.getUsers(input);
   return users;
 };
 
 const user = async (_, { id }, { dataSources }) => {
-  const user = dataSources.userAPi.getUser(id);
+  const user = await dataSources.userAPi.getUser(id);
   return user;
 };
 
