@@ -1,17 +1,15 @@
-const users = async (_, { input }, { getUsers }) => {
-  const apiFiltersInput = new URLSearchParams(input);
-  const users = await getUsers('/?' + apiFiltersInput);
-  return users.json();
+const users = async (_, { input }, { dataSources }) => {
+  const users = dataSources.userAPi.getUsers(input);
+  return users;
 };
 
-const user = async (_, { id }, { getUsers }) => {
-  const response = await getUsers('/' + id);
-  const user = await response.json();
+const user = async (_, { id }, { dataSources }) => {
+  const user = dataSources.userAPi.getUser(id);
   return user;
 };
 
-const posts = async ({ id }, __, { postDataloader }) => {
-  return postDataloader.load(id);
+const posts = async ({ id }, __, { dataSources }) => {
+  return dataSources.postAPi.dataLoader.load(id);
 };
 
 export const userResolvers = {
